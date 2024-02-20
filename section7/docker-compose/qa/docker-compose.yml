@@ -1,0 +1,99 @@
+services:
+
+  acountsDb:
+    container_name: accountsDb
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: accountsDb
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
+  loansDb:
+    container_name: loansDb
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: loansDb
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
+  cardsDb:
+    container_name: cardsDb
+    ports:
+      - 3309:3306
+    environment:
+      MYSQL_DATABASE: cardsDb
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
+  configserver:
+    image: "mais85/configserver2:s6"
+    container_name: configserver-ms
+    ports:
+      - "8071:8071"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
+
+  accounts2:
+    image: "mais85/accounts2:s6"
+    container_name: accounts-ms
+    ports:
+      - "8081:8081"
+
+    environment:
+      SPRING_APPLICATION_NAME: "accounts"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsDb:3307/accountsDb"
+    depends_on:
+      acountsDb:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+
+  loans2:
+    image: "mais85/loans2:s6"
+    container_name: loans-ms
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_APPLICATION_NAME: "loans"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://loansDb:3308/loansDb"
+    depends_on:
+      loansDb:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+
+  cards2:
+    image: "mais85/cards2:s6"
+    container_name: cards-ms
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_APPLICATION_NAME: "cards"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsDb:3309/cardsDb"
+    depends_on:
+      cardsDb:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+
+networks:
+  eazybank:
+    driver: "bridge"

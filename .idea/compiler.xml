@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="accounts2 (2)" />
+        <module name="accounts2 (3)" />
+        <module name="accounts2 (1)" />
+        <module name="configserver2" />
+        <module name="cards2" />
+        <module name="accounts2" />
+        <module name="cards2 (2)" />
+        <module name="cards2 (1)" />
+        <module name="loans2 (3)" />
+        <module name="loans2" />
+        <module name="loans2 (2)" />
+        <module name="loans2 (1)" />
+        <module name="cards2 (3)" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="accounts2" options="-parameters" />
+      <module name="accounts2 (1)" options="-parameters" />
+      <module name="accounts2 (2)" options="-parameters" />
+      <module name="accounts2 (3)" options="-parameters" />
+      <module name="cards2" options="-parameters" />
+      <module name="cards2 (1)" options="-parameters" />
+      <module name="cards2 (2)" options="-parameters" />
+      <module name="cards2 (3)" options="-parameters" />
+      <module name="configserver2" options="-parameters" />
+      <module name="loans2" options="-parameters" />
+      <module name="loans2 (1)" options="-parameters" />
+      <module name="loans2 (2)" options="-parameters" />
+      <module name="loans2 (3)" options="-parameters" />
+    </option>
+  </component>
+</project>

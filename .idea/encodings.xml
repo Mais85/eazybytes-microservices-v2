@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/section2/accounts2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section2/cards2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section2/loans2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section4/accounts2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section4/cards2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section4/loans2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section6/v1-springboot/accounts2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section6/v1-springboot/cards2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section6/v1-springboot/loans2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section6/v2-spring-cloud-config/accounts2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section6/v2-spring-cloud-config/cards2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section6/v2-spring-cloud-config/configserver2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/section6/v2-spring-cloud-config/loans2/src/main/java" charset="UTF-8" />
+  </component>
+</project>

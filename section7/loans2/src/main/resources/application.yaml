@@ -1,0 +1,29 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: "loans"
+  profiles:
+    active: "qa"
+  datasource:
+    url: jdbc:mysql://localhost:3308/loansDb
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      mode: always
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
