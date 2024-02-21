@@ -8,7 +8,7 @@ services:
       MYSQL_DATABASE: accountsDb
     extends:
       file: common-config.yml
-      service: network-deploy-service
+      service: microservice-db-config
 
   loansDb:
     container_name: loansDb
@@ -18,7 +18,7 @@ services:
       MYSQL_DATABASE: loansDb
     extends:
       file: common-config.yml
-      service: network-deploy-service
+      service: microservice-db-config
 
   cardsDb:
     container_name: cardsDb
@@ -28,16 +28,13 @@ services:
       MYSQL_DATABASE: cardsDb
     extends:
       file: common-config.yml
-      service: network-deploy-service
+      service: microservice-db-config
 
   configserver:
-    image: "mais85/configserver2:s6"
+    image: "mais85/configserver2:s7"
     container_name: configserver-ms
     ports:
       - "8071:8071"
-    depends_on:
-      rabbit:
-        condition: service_healthy
     healthcheck:
       test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
@@ -49,14 +46,14 @@ services:
       service: microservice-base-config
 
   accounts2:
-    image: "mais85/accounts2:s6"
+    image: "mais85/accounts2:s7"
     container_name: accounts-ms
     ports:
       - "8081:8081"
 
     environment:
       SPRING_APPLICATION_NAME: "accounts"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsDb:3307/accountsDb"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsDb:3306/accountsDb"
     depends_on:
       acountsDb:
         condition: service_healthy
@@ -65,13 +62,13 @@ services:
       service: microservice-configserver-config
 
   loans2:
-    image: "mais85/loans2:s6"
+    image: "mais85/loans2:s7"
     container_name: loans-ms
     ports:
       - "8083:8083"
     environment:
       SPRING_APPLICATION_NAME: "loans"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://loansDb:3308/loansDb"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://loansDb:3306/loansDb"
     depends_on:
       loansDb:
         condition: service_healthy
@@ -80,13 +77,13 @@ services:
       service: microservice-configserver-config
 
   cards2:
-    image: "mais85/cards2:s6"
+    image: "mais85/cards2:s7"
     container_name: cards-ms
     ports:
       - "8082:8082"
     environment:
       SPRING_APPLICATION_NAME: "cards"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsDb:3309/cardsDb"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsDb:3306/cardsDb"
     depends_on:
       cardsDb:
         condition: service_healthy
