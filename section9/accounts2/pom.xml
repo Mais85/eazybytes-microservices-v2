@@ -90,6 +90,10 @@
 
 	<build>
 		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>org.graalvm.buildtools</groupId>-->
+<!--				<artifactId>native-maven-plugin</artifactId>-->
+<!--			</plugin>-->
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
